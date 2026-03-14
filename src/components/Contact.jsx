@@ -1,7 +1,40 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, Github, Linkedin, Mail } from 'lucide-react';
 
 const Contact = () => {
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [status, setStatus] = useState('');
+
+  const handleChange = (e) => setFormData({ ...formData, [e.target.id]: e.target.value });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus('Sending...');
+    
+    try {
+      const response = await fetch('http://localhost:5000/api/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      
+      const data = await response.json();
+      
+      if (data.success) {
+        setStatus('Message Sent Successfully! ✅');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        setStatus(`Failed: ${data.error}`);
+      }
+    } catch (err) {
+      console.error(err);
+      setStatus('Server offline or unreachable ❌');
+    }
+    
+    setTimeout(() => setStatus(''), 7000);
+  };
+
   return (
     <section id="contact" className="py-24 relative z-10 font-sans">
       <div className="w-full">
@@ -26,12 +59,15 @@ const Contact = () => {
             <h3 className="font-heading text-2xl font-bold text-cyan-400 mb-8 tracking-wide">
               Send a Message
             </h3>
-            <form className="space-y-6 flex-1">
+            <form className="space-y-6 flex-1" onSubmit={handleSubmit}>
               <div>
                 <label className="block font-mono text-gray-500 text-[0.7rem] uppercase tracking-widest mb-2" htmlFor="name">Name_</label>
                 <input 
                   type="text" 
                   id="name" 
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
                   placeholder="John Doe" 
                   className="w-full bg-[#0a0a0a] border border-white/10 px-4 py-3.5 text-[#f0f0f0] font-mono text-sm placeholder-gray-600 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/50 transition-colors clip-button"
                 />
@@ -42,6 +78,9 @@ const Contact = () => {
                 <input 
                   type="email" 
                   id="email" 
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
                   placeholder="john@example.com" 
                   className="w-full bg-[#0a0a0a] border border-white/10 px-4 py-3.5 text-[#f0f0f0] font-mono text-sm placeholder-gray-600 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/50 transition-colors clip-button"
                 />
@@ -52,6 +91,9 @@ const Contact = () => {
                 <textarea 
                   id="message" 
                   rows="5" 
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
                   placeholder="Your message here..." 
                   className="w-full bg-[#0a0a0a] border border-white/10 px-4 py-3.5 text-[#f0f0f0] font-sans text-sm placeholder-gray-600 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/50 transition-colors clip-button"
                 ></textarea>
@@ -63,6 +105,12 @@ const Contact = () => {
               >
                 Send Message <Send size={16} />
               </button>
+              
+              {status && (
+                <div className={`mt-4 font-mono text-sm text-center ${status.includes('Failed') || status.includes('offline') ? 'text-red-400' : 'text-cyan-400'}`}>
+                  {status}
+                </div>
+              )}
             </form>
           </motion.div>
           
