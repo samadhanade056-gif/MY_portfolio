@@ -36,7 +36,7 @@ const Projects = () => {
           <span className="text-gray-500 mr-2">{"//"}</span> My Work
         </span>
         <h2 className="font-heading text-3xl md:text-5xl font-bold mb-4 tracking-wider text-[#f0f0f0]">
-          Featured Projects
+          Projects
         </h2>
         <div className="w-16 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mb-16 clip-button"></div>
 
