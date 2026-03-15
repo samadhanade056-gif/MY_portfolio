@@ -88,7 +88,7 @@ const Hero = () => {
               <div className="absolute inset-4 border border-purple-500/30 rounded-full animate-[spin_15s_linear_infinite_reverse]"></div>
               
               {/* Image Frame */}
-              <div className="absolute inset-8 bg-[#161616] border border-white/10 clip-card overflow-hidden group">
+              <div className="absolute inset-8 bg-[#161616] border border-white/10 rounded-full overflow-hidden group">
                  <img 
                   src="/profile.jpg" 
                   alt="Samadhan Ade" 
@@ -96,23 +96,6 @@ const Hero = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-cyan-900/40 to-transparent mix-blend-overlay"></div>
               </div>
-
-              {/* Floating badges */}
-              <motion.div 
-                animate={{ y: [0, 15, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-0 right-0 py-2 px-4 bg-[#111111] border border-cyan-500/50 clip-button shadow-[0_0_15px_rgba(34,211,238,0.2)]"
-              >
-                <span className="font-mono text-cyan-400 text-xs">React.js</span>
-              </motion.div>
-              
-              <motion.div 
-                animate={{ y: [0, -15, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute bottom-4 left-0 py-2 px-4 bg-[#111111] border border-purple-500/50 clip-button shadow-[0_0_15px_rgba(168,85,247,0.2)]"
-              >
-                <span className="font-mono text-purple-400 text-xs">Java</span>
-              </motion.div>
             </div>
           </motion.div>
 
