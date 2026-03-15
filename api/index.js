@@ -8,8 +8,8 @@ const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 
-// Use the local MongoDB connection string provided
-const MONGODB_URI = 'mongodb://localhost:27017/portfolio';
+// Use the local MongoDB connection string provided or the environment variable for deployment
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/portfolio';
 
 mongoose.connect(MONGODB_URI)
   .then(() => console.log('✅ MongoDB connected successfully to: ' + MONGODB_URI))
@@ -63,6 +63,10 @@ app.get('/api/messages', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`🚀 Database API Server running on http://localhost:${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`🚀 Database API Server running on http://localhost:${PORT}`);
+  });
+}
+
+export default app;
