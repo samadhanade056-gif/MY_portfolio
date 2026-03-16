@@ -1,6 +1,9 @@
 import express from 'express';
-import mongoose from 'mongoose';
-import cors from 'cors';
+import pkg from 'pg';
+const { Pool } = pkg;
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
 const PORT = 5000;
@@ -8,29 +11,40 @@ const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 
-// Use the local MongoDB connection string provided or the environment variable for deployment
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/portfolio';
-
-mongoose.connect(MONGODB_URI)
-  .then(() => console.log('✅ MongoDB connected successfully to: ' + MONGODB_URI))
-  .catch((err) => console.error('❌ MongoDB connection error:', err));
-
-// --- SCHEMAS & MODELS ---
-
-// 1. Contact Form Message Schema
-const messageSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true },
-  message: { type: String, required: true },
-  createdAt: { type: Date, default: Date.now }
+// Set up PostgreSQL connection pool
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL || 'postgresql://postgres:[YOUR-PASSWORD]@db.ylxsbmifiadhbbyyhmss.supabase.co:5432/postgres',
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
-const Message = mongoose.model('Message', messageSchema);
+
+// Initialize the Database Table if it doesn't exist
+const initDB = async () => {
+  try {
+    const createTableQuery = `
+      CREATE TABLE IF NOT EXISTS messages (
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        message TEXT NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `;
+    await pool.query(createTableQuery);
+    console.log('✅ PostgreSQL Connected: Messages table initialized.');
+  } catch (err) {
+    console.error('❌ PostgreSQL Initialization Error:', err);
+  }
+};
+
+initDB();
 
 // --- ROUTES ---
 
 // Health Check
 app.get('/api', (req, res) => {
-  res.json({ message: 'Portfolio API Backend is running.' });
+  res.json({ message: 'Portfolio API Backend (PostgreSQL) is running.' });
 });
 
 // Submit a contact form message
@@ -42,11 +56,15 @@ app.post('/api/messages', async (req, res) => {
       return res.status(400).json({ success: false, error: "Please fill in all fields" });
     }
 
-    const newMessage = new Message({ name, email, message });
-    await newMessage.save();
+    const insertQuery = `
+      INSERT INTO messages (name, email, message) 
+      VALUES ($1, $2, $3) 
+      RETURNING *;
+    `;
+    const result = await pool.query(insertQuery, [name, email, message]);
     
     console.log(`New message saved from ${name}`);
-    res.status(201).json({ success: true, data: newMessage });
+    res.status(201).json({ success: true, data: result.rows[0] });
   } catch (error) {
     console.error('Save message error:', error);
     res.status(500).json({ success: false, error: 'Database Server Error' });
@@ -56,9 +74,11 @@ app.post('/api/messages', async (req, res) => {
 // Get all messages
 app.get('/api/messages', async (req, res) => {
   try {
-    const messages = await Message.find().sort({ createdAt: -1 });
-    res.status(200).json({ success: true, data: messages });
+    const selectQuery = 'SELECT * FROM messages ORDER BY created_at DESC;';
+    const result = await pool.query(selectQuery);
+    res.status(200).json({ success: true, data: result.rows });
   } catch (error) {
+    console.error('Fetch messages error:', error);
     res.status(500).json({ success: false, error: 'Database Server Error' });
   }
 });
