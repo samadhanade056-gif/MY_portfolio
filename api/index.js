@@ -1,6 +1,5 @@
 import express from 'express';
-import pkg from 'pg';
-const { Pool } = pkg;
+import { createClient } from '@supabase/supabase-js';
 import dotenv from 'dotenv';
 import cors from 'cors';
 
@@ -12,40 +11,18 @@ const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 
-// Set up PostgreSQL connection pool
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL || 'postgresql://postgres:[YOUR-PASSWORD]@db.ylxsbmifiadhbbyyhmss.supabase.co:5432/postgres',
-  ssl: {
-    rejectUnauthorized: false
-  }
-});
+// Set up Supabase Client
+const supabaseUrl = process.env.SUPABASE_URL || 'https://ylxsbmifiadhbbyyhmss.supabase.co';
+const supabaseKey = process.env.SUPABASE_ANON_KEY || 'sb_publishable_PoMO124whDtgafK8s5TqfA_z4d8A3Oc';
+const supabase = createClient(supabaseUrl, supabaseKey);
 
-// Initialize the Database Table if it doesn't exist
-const initDB = async () => {
-  try {
-    const createTableQuery = `
-      CREATE TABLE IF NOT EXISTS messages (
-        id SERIAL PRIMARY KEY,
-        name VARCHAR(255) NOT NULL,
-        email VARCHAR(255) NOT NULL,
-        message TEXT NOT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-      );
-    `;
-    await pool.query(createTableQuery);
-    console.log('✅ PostgreSQL Connected: Messages table initialized.');
-  } catch (err) {
-    console.error('❌ PostgreSQL Initialization Error:', err);
-  }
-};
-
-initDB();
+console.log('✅ Supabase Client Initialized');
 
 // --- ROUTES ---
 
 // Health Check
 app.get('/api', (req, res) => {
-  res.json({ message: 'Portfolio API Backend (PostgreSQL) is running.' });
+  res.json({ message: 'Portfolio API Backend (Supabase Client) is running.' });
 });
 
 // Submit a contact form message
@@ -57,15 +34,15 @@ app.post('/api/messages', async (req, res) => {
       return res.status(400).json({ success: false, error: "Please fill in all fields" });
     }
 
-    const insertQuery = `
-      INSERT INTO messages (name, email, message) 
-      VALUES ($1, $2, $3) 
-      RETURNING *;
-    `;
-    const result = await pool.query(insertQuery, [name, email, message]);
+    const { data, error } = await supabase
+      .from('messages')
+      .insert([{ name, email, message }])
+      .select();
+      
+    if (error) throw error;
     
     console.log(`New message saved from ${name}`);
-    res.status(201).json({ success: true, data: result.rows[0] });
+    res.status(201).json({ success: true, data: data[0] });
   } catch (error) {
     console.error('Save message error:', error);
     res.status(500).json({ success: false, error: 'Database Server Error' });
@@ -75,9 +52,14 @@ app.post('/api/messages', async (req, res) => {
 // Get all messages
 app.get('/api/messages', async (req, res) => {
   try {
-    const selectQuery = 'SELECT * FROM messages ORDER BY created_at DESC;';
-    const result = await pool.query(selectQuery);
-    res.status(200).json({ success: true, data: result.rows });
+    const { data, error } = await supabase
+      .from('messages')
+      .select('*')
+      .order('created_at', { ascending: false });
+      
+    if (error) throw error;
+
+    res.status(200).json({ success: true, data });
   } catch (error) {
     console.error('Fetch messages error:', error);
     res.status(500).json({ success: false, error: 'Database Server Error' });
