@@ -5,7 +5,7 @@
   --font-sans: 'Rajdhani', sans-serif;
   --font-heading: 'Orbitron', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-  --color-border-glow: rgba(34, 211, 238, 0.3);
+  --color-border-glow: rgba(139, 92, 246, 0.3);
 }
 
 @layer base {
@@ -13,7 +13,7 @@
     @apply scroll-smooth;
   }
   body {
-    @apply bg-[#0a0a0a] text-[#f0f0f0] font-sans overflow-x-hidden;
+    @apply bg-slate-950 text-slate-100 font-sans overflow-x-hidden;
     /* transition: background .3s ease, color .3s ease; */
   }
 }
@@ -32,36 +32,37 @@
   }
 
   .tech-bg {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-image: linear-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(139, 92, 246, 0.05) 1px, transparent 1px);
     background-size: 60px 60px;
+    background-color: #020617; /* slate-950 base */
   }
 
   .card-tech {
-    @apply bg-[#161616] border border-white/10 transition-all duration-300;
+    @apply bg-slate-900 border border-violet-500/10 transition-all duration-300;
   }
   
   .card-tech:hover {
-    @apply border-cyan-500/50 shadow-[0_0_30px_rgba(34,211,238,0.2),0_20px_40px_rgba(0,0,0,0.3)] -translate-y-1;
+    @apply border-violet-500/50 shadow-[0_0_30px_rgba(139,92,246,0.2),0_20px_40px_rgba(0,0,0,0.3)] -translate-y-1;
   }
 
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-fuchsia-500 to-rose-500;
   }
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #111111;
+  background: #020617;
 }
 ::-webkit-scrollbar-thumb {
-  background: #22d3ee;
-  border-radius: 2px;
+  background: #8b5cf6;
+  border-radius: 3px;
 }
 ::selection {
-  background: #22d3ee;
+  background: #8b5cf6;
   color: #fff;
 }
