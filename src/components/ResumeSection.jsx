@@ -96,12 +96,12 @@ CERTIFICATIONS
             </button>
 
             <a
-              href="/resume-img.png"
+              href="/resume.svg"
               target="_blank"
               rel="noopener noreferrer"
               className="clip-button bg-cyan-600 hover:bg-cyan-500 text-black font-bold px-5 py-2 flex items-center gap-2 font-mono text-xs uppercase tracking-wider transition-all shadow-[0_0_15px_rgba(34,211,238,0.3)]"
             >
-              <Download size={14} /> Download / View Image
+              <Download size={14} /> Download / View SVG
             </a>
           </div>
         </div>
