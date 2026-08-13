@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Rajdhani', sans-serif;
+  --font-heading: 'Orbitron', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --color-border-glow: rgba(139, 92, 246, 0.3);
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  body {
+    @apply bg-slate-950 text-slate-100 font-sans overflow-x-hidden;
+    /* transition: background .3s ease, color .3s ease; */
+  }
+}
+
+@layer utilities {
+  .clip-button {
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+
+  .clip-button-reverse {
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 100%, 8px 100%);
+  }
+  
+  .clip-card {
+    clip-path: polygon(16px 0%, 100% 0%, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0% 100%, 0% 16px);
+  }
+
+  .tech-bg {
+    background-image: linear-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(139, 92, 246, 0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+    background-color: #020617; /* slate-950 base */
+  }
+
+  .card-tech {
+    @apply bg-slate-900 border border-violet-500/10 transition-all duration-300;
+  }
+  
+  .card-tech:hover {
+    @apply border-violet-500/50 shadow-[0_0_30px_rgba(139,92,246,0.2),0_20px_40px_rgba(0,0,0,0.3)] -translate-y-1;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-fuchsia-500 to-rose-500;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #020617;
+}
+::-webkit-scrollbar-thumb {
+  background: #8b5cf6;
+  border-radius: 3px;
+}
+::selection {
+  background: #8b5cf6;
+  color: #fff;
+}

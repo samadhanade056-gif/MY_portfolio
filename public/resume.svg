@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 1150" width="850" height="1150" style="background:#ffffff; font-family: Arial, Helvetica, sans-serif;">
+  <style>
+    .name { font-size: 26px; font-weight: bold; fill: #111111; text-anchor: middle; }
+    .contact { font-size: 11px; fill: #333333; text-anchor: middle; }
+    .section-title { font-size: 13px; font-weight: bold; fill: #111111; text-transform: uppercase; letter-spacing: 1px; }
+    .line { stroke: #222222; stroke-width: 1; }
+    .sub-heading { font-size: 12px; font-weight: bold; fill: #111111; }
+    .date { font-size: 11px; font-style: italic; fill: #444444; text-anchor: end; }
+    .body-text { font-size: 10.5px; fill: #222222; line-height: 1.4; }
+    .bullet { font-size: 10.5px; fill: #222222; }
+    .link { fill: #0056b3; text-decoration: underline; }
+    .tech-stack { font-size: 10px; font-weight: bold; fill: #333333; }
+  </style>
+
+  <!-- Header -->
+  <text x="425" y="45" class="name">Samadhan Ade</text>
+  <text x="425" y="65" class="contact">+91 8484881414 | samadhanade056@gmail.com | linkedin.com/in/samadhanade</text>
+
+  <!-- PROFESSIONAL SUMMARY -->
+  <text x="40" y="95" class="section-title">PROFESSIONAL SUMMARY</text>
+  <line x1="40" y1="100" x2="810" y2="100" class="line" />
+  <text x="40" y="118" class="body-text">Electronics and Telecommunication Engineering student with experience across 2 internships and 3 independent projects.</text>
+  <text x="40" y="133" class="body-text">Skilled in React.js, Node.js, Express.js, and MongoDB, with a focus on responsive design and clean UI/UX, from building</text>
+  <text x="40" y="148" class="body-text">CRUD features to deploying live apps on Render and Vercel.</text>
+
+  <!-- EDUCATION -->
+  <text x="40" y="180" class="section-title">EDUCATION</text>
+  <line x1="40" y1="185" x2="810" y2="185" class="line" />
+  <text x="40" y="203" class="sub-heading">JD College of Engineering and Management</text>
+  <text x="810" y="203" class="date">2023 – 2027</text>
+  <text x="40" y="218" class="body-text">B.Tech in Electronics and Telecommunication Engineering</text>
+
+  <!-- SKILLS -->
+  <text x="40" y="250" class="section-title">SKILLS</text>
+  <line x1="40" y1="255" x2="810" y2="255" class="line" />
+  <text x="40" y="273" class="body-text"><tspan font-weight="bold">Programming Languages:</tspan> Python, JavaScript</text>
+  <text x="40" y="289" class="body-text"><tspan font-weight="bold">Frontend:</tspan> HTML, CSS, Bootstrap, React.js</text>
+  <text x="40" y="305" class="body-text"><tspan font-weight="bold">Backend:</tspan> Node.js, Express.js, MongoDB, Mongoose, Passport.js</text>
+  <text x="40" y="321" class="body-text"><tspan font-weight="bold">Tools:</tspan> Git, GitHub, VS Code, Arduino, Cloudinary, Render</text>
+  <text x="40" y="337" class="body-text"><tspan font-weight="bold">Design:</tspan> Canva, Figma</text>
+  <text x="40" y="353" class="body-text"><tspan font-weight="bold">UI/UX:</tspan> Responsive Design, UI/UX Principles</text>
+
+  <!-- WORK EXPERIENCE -->
+  <text x="40" y="385" class="section-title">WORK EXPERIENCE</text>
+  <line x1="40" y1="390" x2="810" y2="390" class="line" />
+
+  <!-- Exp 1 -->
+  <text x="40" y="408" class="sub-heading">Frontend Intern – Portage Infotech</text>
+  <text x="810" y="408" class="date">Sep 2024 – Sep 2024</text>
+  <text x="50" y="424" class="bullet">• Built 10+ reusable UI components across 4 technologies (HTML, CSS, JavaScript, React.js, Bootstrap), cutting redundant</text>
+  <text x="60" y="438" class="bullet">code by ~25%</text>
+  <text x="50" y="453" class="bullet">• Resolved 15+ layout bugs and refined mobile-view elements across 5+ pages, improving overall usability and cutting UI</text>
+  <text x="60" y="467" class="bullet">inconsistencies by ~30%</text>
+  <text x="50" y="482" class="bullet">• Integrated 3+ REST APIs and contributed to sprint planning workflows during a 1-month internship cycle</text>
+
+  <!-- Exp 2 -->
+  <text x="40" y="512" class="sub-heading">Web Development Intern – Zidio Development</text>
+  <text x="810" y="512" class="date">May 2025 – Jun 2025</text>
+  <text x="50" y="528" class="bullet">• Coded 8+ frontend components for web pages using HTML, CSS, and JavaScript over a 2-month internship</text>
+  <text x="50" y="543" class="bullet">• Built responsive layouts for 6+ web pages and collaborated with a 4-member team through daily agile stand-ups, improving</text>
+  <text x="60" y="557" class="bullet">sprint delivery speed by ~20%</text>
+  <text x="50" y="572" class="bullet">• Prototyped 5+ UI screens in Figma applying core UI/UX design principles ahead of development handoff</text>
+
+  <!-- Exp 3 -->
+  <text x="40" y="602" class="sub-heading">Full Stack MERN Development Intern – EduSkills Foundation</text>
+  <text x="810" y="602" class="date">April 2026 – June 2026</text>
+  <text x="50" y="618" class="bullet">• Completed a Full Stack MERN Development internship, building 2+ responsive web applications with hands-on production</text>
+  <text x="60" y="632" class="bullet">practices</text>
+  <text x="50" y="647" class="bullet">• Developed full-stack applications using MongoDB, Express.js, React.js, and Node.js, implementing 10+ RESTful API endpoints</text>
+  <text x="60" y="661" class="bullet">and full CRUD operations</text>
+  <text x="50" y="676" class="bullet">• Managed version control via Git &amp; GitHub across 15+ commits, ensuring clean project history and collaboration</text>
+
+  <!-- PROJECTS -->
+  <text x="40" y="708" class="section-title">PROJECTS</text>
+  <line x1="40" y1="713" x2="810" y2="713" class="line" />
+
+  <!-- Proj 1 -->
+  <text x="40" y="731" class="sub-heading">Personal Portfolio Website</text>
+  <text x="40" y="746" class="body-text">Live Demo: <tspan class="link">https://samadhanadeportfolio.vercel.app/</tspan> | GitHub: <tspan class="link">https://github.com/samadhanade056-gif</tspan></text>
+  <text x="50" y="762" class="bullet">• Built a personal portfolio site to showcase 3+ projects, technical skills, certifications, and resume</text>
+  <text x="50" y="777" class="bullet">• Designed a modern, user-friendly interface with seamless navigation across desktop and mobile devices</text>
+  <text x="50" y="792" class="bullet">• Structured adaptive layouts for an optimal viewing experience across all screen sizes</text>
+  <text x="50" y="807" class="bullet">• Added a contact section and project gallery for easy communication and exploration</text>
+  <text x="50" y="822" class="bullet">• Hosted the site on Vercel for fast, reliable delivery</text>
+  <text x="50" y="837" class="tech-stack">Tech Stack: React.js, Vite, Tailwind CSS, JavaScript, HTML5, CSS3, Vercel</text>
+
+  <!-- Proj 2 -->
+  <text x="40" y="867" class="sub-heading">Wanderlust – Full-Stack Travel Accommodation Platform</text>
+  <text x="40" y="882" class="body-text">GitHub: <tspan class="link">https://github.com/samadhanade056-gif/Wanderlust</tspan> | Live Demo: <tspan class="link">https://wanderlust-0rhh.onrender.com</tspan></text>
+  <text x="50" y="898" class="bullet">• Built a full-stack travel accommodation platform inspired by Airbnb using 5+ core technologies — Node.js, Express.js,</text>
+  <text x="60" y="912" class="bullet">MongoDB, EJS, and Bootstrap — following the MVC architecture</text>
+  <text x="50" y="927" class="bullet">• Added secure user authentication with Passport.js and full CRUD functionality across 2 core modules: property listings and reviews</text>
+  <text x="50" y="942" class="bullet">• Integrated Cloudinary for image uploads and styled a mobile-friendly interface with Bootstrap</text>
+  <text x="50" y="957" class="bullet">• Hosted the application on Render for public access</text>
+  <text x="50" y="972" class="tech-stack">Tech Stack: Node.js, Express.js, MongoDB, Mongoose, EJS, Bootstrap, JavaScript, Passport.js, Cloudinary, Joi, Render</text>
+
+  <!-- CERTIFICATIONS -->
+  <text x="40" y="1005" class="section-title">CERTIFICATIONS</text>
+  <line x1="40" y1="1010" x2="810" y2="1010" class="line" />
+  <text x="50" y="1028" class="bullet">• Web Development Bootcamp – Simplilearn</text>
+  <text x="50" y="1045" class="bullet">• Data Structures and Algorithms (Java)</text>
+</svg>

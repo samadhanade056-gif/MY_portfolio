@@ -1,0 +1,59 @@
+﻿
+> new-folder--3-@0.0.0 build
+> vite build
+
+node.exe : [31mfailed to 
+load config from D:\New 
+folder (3)\vite.config.js[39m
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs\.msi/node.exe" 
+"C:\Program Files\nodejs\.m 
+...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~
+    + CategoryInfo          : 
+    NotSpecified: ([31mfail  
+  ed to ....config.js[39m:   
+ String) [], RemoteExcepti    
+on
+    + FullyQualifiedErrorId : 
+    NativeCommandError
+ 
+[31merror during build:
+Error [ERR_PACKAGE_PATH_NOT_EX
+PORTED]: Package subpath 
+'./internal' is not defined 
+by "exports" in D:\New folder 
+(3)\node_modules\vite\package.
+json imported from D:\New 
+folder (3)\node_modules\@vitej
+s\plugin-react\dist\index.js
+    at exportsNotFound (node:i
+nternal/modules/esm/resolve:31
+3:10)
+    at packageExportsResolve (
+node:internal/modules/esm/reso
+lve:660:9)
+    at packageResolve (node:in
+ternal/modules/esm/resolve:773
+:12)
+    at moduleResolve (node:int
+ernal/modules/esm/resolve:853:
+18)
+    at defaultResolve (node:in
+ternal/modules/esm/resolve:983
+:11)
+    at #cachedDefaultResolve (
+node:internal/modules/esm/load
+er:717:20)
+    at ModuleLoader.resolve (n
+ode:internal/modules/esm/loade
+r:694:38)
+    at ModuleLoader.getModuleJ
+obForImport (node:internal/mod
+ules/esm/loader:308:38)
+    at ModuleJob._link (node:i
+nternal/modules/esm/module_job
+:183:49)[39m
